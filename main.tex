@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\graphicspath{ {./images/} }
+\title{Homework 1}
+\author{Atlas42 }
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{To evaluate a new test for detecting Hansen’s disease, a group of people 5 percent of which are known to have Hansen’s disease are tested. The test finds Hansen’s disease among 98 percent of those with the disease and 3 percent of those who don’t. What is the probability that someone testing positive for Hansen’s disease under this new test actually has it?
+}
+\LARGE 
+From the question, we can infer these information: \\
+The probability of selecting a person with Hansen is: \\ \centerline{$P(hasHansen)$ = 0.05}\\
+The probability of selecting a person without Hansen is: \\
+\centerline{$P(doesnthaveHansen)$ = 0.05}\\
+The probability of selecting a person with Hansen from those that have Hansen with the test is: \\
+\centerline{$P(test \mid hasHansen)$ = 0.98}\\
+The probability of selecting a person with Hansen from those that don't have Hansen with the test is: \\
+\centerline{$P(test \mid doesnthaveHansen)$ = 0.3}\\ 
+The question at hand: \\
+$P(\text{hasHansen} \mid \text{test})$ = ? \\
+\text{Applying Bayes Theorem:} \\
+\centerline{$P(\text{A}|\text{B}) = P(\text{A} ) \frac{P(\text{B} |\text{A})}{P(\text{B})}$} \\
+where \text{A}, \text{B} = events \\
+$P(\text{A}\mid \text{B})$ = \text{probability of A given B is true} \\
+$P(\text{B} \mid \text{A})$ = \text{probability of B given A is true} \\
+$P(\text{A} ), P(\text{B})$ = \texT{the independent probabilities of A and B}\\
+\text{Thus, we have:}\\
+$P(\text{hasHansen} \mid \text{test}) = P(\text{test} \mid \text{hasHansen}) \frac{P(\text{hasHansen})}{P(\text{test})}$
+\centerline{= $0.98 \frac{0.05} {0.05 \times 0.98 + 0.95 \times 0.03}$}\\
+\\\centerline{$$\approx{0.6322}$}
+\section{Proof the following distributions are normalized then calculate the mean and standard deviation of these distribution:\\
+a. Univariate normal distribution.\\
+b. (Optional) Multivariate normal distribution.}
+\text{a.} 
+The normal distribution, also known as Gaussian distribution, is defined by two parameters, mean $\mu$, which is expected value of the distribution and standard deviation σ which corresponds to the expected squared deviation from the mean. Mean, $\mu$ controls the Gaussian’s center position and the standard deviation controls the shape of the distribution. The square of standard deviation is typically referred to as the variance $\sigma{^2}$. We denote this distribution as $N(\mu, \sigma^{2})$.
+
+Given the mean and variance, one can calculate probability distribution function of normal distribution with a normalised Gaussian function for a value x, the density is:
+
+\centerline{$P(x \mid \mu, \sigma^{2}) = \frac{1}{\sqrt{2\pi \sigma^{2}}} exp \left(- \frac{(x - \mu)^{2}}{2\sigma^{2}} \right)$}\\
+
+\\We call this distribution univariate because it consists of one random variable.\\
+
+\includegraphics{1}
+
+Now, we calculate the mean and standard deviation of univariate normal distribution:\\
+First, we have the mean: \\
+\displaystyle{E\left(X\right)=\mu_X=\int_{-\infty}^{\infty}x\cdot f(x)\,dx.}\\
+
+$&= \frac{1}{{\sqrt {2\pi {\sigma ^2}} }}\int\limits_{ - \infty }^\infty  {\left( {z + \mu } \right){e^{ - \frac{{{z^2}}}{{2{\sigma ^2}}}}}dz} \\
+&= \frac{1}{{\sqrt {2\pi {\sigma ^2}} }}\int\limits_{ - \infty}^\infty  {z{e^{ - \frac{{{z^2}}}{{2{\sigma ^2}}}}}dz + \mu \left[{\frac{1}{{\sqrt {2\pi {\sigma ^2}} }}\int\limits_{ - \infty}^\infty  {{e^{ - \frac{{{z^2}}}{{2{\sigma ^2}}}}}dz} } \right]}$ \\
+\\The first integral evaluate to 0 because the integrand is an odd function and the integration can be split in two simmetric halves (with respect to the y axis), which are both convergent (i.e. the limits $\mathop {\lim }\limits_{a \to \infty } \int_0^a {f\left( x \right)dx}$ and $\mathop {\lim }\limits_{a \to -\infty } \int_a^0 {f\left( x \right)dx}$  that define them exist). The second integral (within square brackets) evaluates to 1 (it is a Gaussian pdf), so you are left with:\\
+\centerline{$E\left[ X \right] = \mu$}
+Next up, we calculate the variance of the univariate normal distribution:\\
+\ds \var X = \int_{-\infty}^\infty x^2 \map {f_X} x \rd x - \paren {\expect X}^2\\
+\ds \var X = \ds \frac 1 {\sigma \sqrt {2 \pi} } \int_{-\infty}^\infty x^2 \map \exp {-\frac {\paren {x - \mu}^2} {2 \sigma^2} } \rd x - \mu^2\\
+\indent =\ds \frac {\sqrt 2 \sigma} {\sigma \sqrt {2 \pi} } \int_{-\infty}^\infty \paren {\sqrt 2 \sigma t + \mu}^2 \map \exp {-t^2} \rd t - \mu^2\\
+\indent = \ds \frac 1 {\sqrt \pi} \paren {2 \sigma^2 \int_{-\infty}^\infty t^2 \map\exp {-t^2} \rd t + 2 \sqrt 2 \sigma \mu \int_{-\infty}^\infty t \map \exp {-t^2} \rd t + \mu^2 \int_{-\infty}^\infty \map \exp {-t^2} \rd t} - \mu^2\\
+\indent = \ds \frac 1 {\sqrt \pi} \paren {2 \sigma^2 \int_{-\infty}^\infty t^2 \map \exp {-t^2} \rd t + 2 \sqrt 2 \sigma \mu \intlimits {-\frac 1 2 \map \exp {-t^2} } {-\infty} \infty + \mu^2 \sqrt \pi} - \mu^2\\
+\indent = \ds \frac 1 {\sqrt \pi} \paren {2 \sigma^2 \int_{-\infty}^\infty t^2 \map \exp {-t^2} \rd t + 2\sqrt 2 \sigma \mu \cdot 0} + \mu^2 - \mu^2\\
+\indent = \ds \frac {2 \sigma^2} {\sqrt \pi} \int_{-\infty}^\infty t^2 \map \exp {-t^2} \rd t\\
+\indent = \ds \frac {2 \sigma^2} {\sqrt \pi} \paren {\intlimits {-\frac t 2 \map \exp {-t^2} } {-\infty} \infty + \frac 1 2 \int_{-\infty}^\infty \map \exp {-t^2} \rd t}\\
+\indent = \ds \frac {2 \sigma^2} {\sqrt \pi} \cdot \frac 1 2 \int_{-\infty}^\infty \map \exp {-t^2} \rd t\\
+\indent = \ds \frac{2 \sigma^2 \sqrt \pi} {2 \sqrt \pi}\\
+\indent = \ds \sigma^2\\
+
+
+
+
+
+
+\end{document}
